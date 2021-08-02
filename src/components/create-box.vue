@@ -1,9 +1,9 @@
 <template>
-  <section class="tool-box">
-    <input class="text-field" type="text" placeholder="タイトル" :value="title" @keyup="onInputTitle" />
-    <input class="text-field" type="text" placeholder="期限" :value="expiresAt" @keyup="onInputExpiresAt" />
-    <input class="text-field" type="text" placeholder="カテゴリ" :value="category" @keyup="onInputCategory" />
-    <button @click="onClickAdd">追加</button>
+  <section class="create-box">
+    <input class="text-field" type="text" placeholder="タイトル" :value="title" @keyup="handleInputTitle" />
+    <input class="text-field" type="text" placeholder="期限" :value="expiresAt" @keyup="handleInputExpiresAt" />
+    <input class="text-field" type="text" placeholder="カテゴリ" :value="category" @keyup="handleInputCategory" />
+    <button @click="handleClickAdd">追加</button>
   </section>
 </template>
 
@@ -11,32 +11,32 @@
   import Vue from 'vue'
 
   export default Vue.extend({
-    name: 'ToolBox',
+    name: 'CreateBox',
     props: {
-      addTodoItem: {
+      addTodo: {
         type: Function,
         required: true,
       },
     },
     data() {
       return {
-        title: '',
-        expiresAt: '',
-        category: '',
+        title: null,
+        expiresAt: null,
+        category: null,
       }
     },
     methods: {
-      onInputTitle(event) {
+      handleInputTitle(event) {
         this.title = event.target.value
       },
-      onInputExpiresAt(event) {
+      handleInputExpiresAt(event) {
         this.expiresAt = event.target.value
       },
-      onInputCategory(event) {
+      handleInputCategory(event) {
         this.category = event.target.value
       },
-      onClickAdd() {
-        this.addTodoItem({
+      handleClickAdd() {
+        this.addTodo({
           title: this.title,
           expiresAt: this.expiresAt,
           category: this.category,
@@ -50,7 +50,7 @@
 </script>
 
 <style scoped>
-  .tool-box {
+  .create-box {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -68,7 +68,7 @@
     font-size: 16px;
     padding: 4px;
   }
-  .tool-box button {
+  .create-box button {
     padding: 4px;
   }
 </style>
